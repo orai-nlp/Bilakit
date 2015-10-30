@@ -1,0 +1,61 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>elh.eus</groupId>
+    <artifactId>Bkit</artifactId>
+    <packaging>pom</packaging>
+    <version>4.10.3</version>
+    <name>Bkit-BasqueLemmatizer</name>
+    <description>Bilakit, multilingual search over Apache Solr Developed by Elhuyar Foundation (elhuyar.eus)</description>
+    <developers>
+      <developer>
+        <id>jasaur</id>
+        <name>Xabier Saralegi</name>
+        <email>x.saralegi@elhuyar.com</email>
+      </developer>
+      <developer>
+        <id>Gotz84</id>
+        <name>Gotzon Santander</name>
+        <email>g.santander@elhuyar.com</email>
+      </developer>
+      <developer>
+        <id>isanvi</id>
+        <name>Iñaki San Vicente</name>
+        <email>i.sanvicente@elhuyar.com</email>
+      </developer>
+    </developers>
+    
+    <modules>
+        <module>Bkit-BasqueLemmatizer</module>
+        <module>Bkit-SpanishLemmatizer</module>
+        <module>Bkit-TermLemmatizer</module>
+        <module>Bkit-TextProcessorElh</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.5</source>
+                        <target>1.5</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
