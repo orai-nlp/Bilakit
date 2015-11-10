@@ -2,11 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>elh.eus</groupId>
-	<artifactId>Bkit-BasqueLemmatizer</artifactId>
+	<artifactId>Bkit-TermLemmatizer</artifactId>
 	<packaging>jar</packaging>
 	<version>4.10.3</version>
-	<name>Bkit-BasqueLemmatizer</name>
-	<description>Bilakit, multilingual search over Apache Solr Developed by Elhuyar Foundation (elhuyar.eus). Basque Lemmatizer module.</description>
+	<name>Bkit-TextProcessor</name>
+	<description>Bilakit, multilingual search over Apache Solr Developed by Elhuyar Foundation (elhuyar.eus). Term Lemmatizer module.</description>
 	<developers>
 		<developer>
 			<id>isanvi</id>
@@ -111,7 +111,7 @@
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
-										<Main-Class>eu.solr.analysis.BasqueLemmatizer</Main-Class>
+										<Main-Class>elhuyar.solr.TermLemmatizer</Main-Class>
 									</manifestEntries>
 								</transformer>
 							</transformers>
@@ -128,7 +128,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.2.1</version>
 				<configuration>
-					<mainClass>eu.solr.analysis.BasqueLemmatizer</mainClass>
+					<mainClass>elhuyar.solr.TermLemmatizer</mainClass>
 				</configuration>
 			</plugin>
 

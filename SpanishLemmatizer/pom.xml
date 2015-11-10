@@ -6,7 +6,7 @@
 	<packaging>jar</packaging>
 	<version>4.10.3</version>
 	<name>Bkit-SpanishLemmatizer</name>
-	<description>Bilakit, multilingual search over Apache Solr Developed by Elhuyar Foundation (elhuyar.eus)</description>
+	<description>Bilakit, multilingual search over Apache Solr Developed by Elhuyar Foundation (elhuyar.eus). Spanish Lemmatizer module</description>
 	<developers>
 		<developer>
 			<id>isanvi</id>
@@ -140,5 +140,5 @@
 		
 		</plugins>
 	</build>
-	<url>https://bitbucket.org/elh-eus/bilakit</url>
+	<url>https://github.com/elhuyar/bilakit</url>
 </project>

@@ -8,7 +8,7 @@
     <artifactId>Bkit</artifactId>
     <packaging>pom</packaging>
     <version>4.10.3</version>
-    <name>Bkit-BasqueLemmatizer</name>
+    <name>Bkit-SolrPlugin</name>
     <description>Bilakit, multilingual search over Apache Solr Developed by Elhuyar Foundation (elhuyar.eus)</description>
     <developers>
       <developer>
@@ -29,10 +29,10 @@
     </developers>
     
     <modules>
-        <module>Bkit-BasqueLemmatizer</module>
-        <module>Bkit-SpanishLemmatizer</module>
-        <module>Bkit-TermLemmatizer</module>
-        <module>Bkit-TextProcessorElh</module>
+        <module>BasqueLemmatizer</module>
+        <module>SpanishLemmatizer</module>
+        <module>TermLemmatizer</module>
+        <module>TextProcessorElh</module>
     </modules>
 
     <build>
