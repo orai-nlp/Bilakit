@@ -6,31 +6,24 @@ if [ $# -eq 1 ]
   command=$1
 fi
 
-if [! -d "target" ]
+# build all packages
+mvn clean $command
+
+if [ ! -d "target" ]
 then
-    mkdir target
+    mkdir ./target
+    echo "target dir created"
 fi
 
-# BasqueLemmatizer
-cd BasqueLemmatizer
-mvn clean $command
-if [ $command == "package" ]
-then 
-    cp target/BasqueLemmatizer.jar ../target/
+if [ $command = "package" ]
+then
+    # BasqueLemmatizer
+    cp BasqueLemmatizer/target/Bkit-BasqueLemmatizer-4.10.3.jar target/
+    # SpanishLemmatizer
+    cp SpanishLemmatizer/target/Bkit-SpanishLemmatizer-4.10.3.jar target/
+    # TextProcessor
+    cp TextProcessorElh/target/Bkit-TextProcessor-4.10.3.jar target/
+    # TermLemmatizer
+    cp TermLemmatizer/target/Bkit-TermLemmatizer-4.10.3.jar target/
 fi
 
-# SpanishLemmatizer
-cd SpanishLemmatizer
-mvn clean $command
-if [ $command == "package" ]
-then
-    cp target/SpanishLemmatizer.jar ../target/
-fi
-
-# TextProcessor
-cd TextProcessor
-mvn clean $command
-if [ $command == "package" ]
-then
-    cp target/TextProcessor.jar ../target/
-fi
