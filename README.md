@@ -12,7 +12,7 @@ Garatutako Solr-erako plugin-en zerrenda:
 + TextProcessorElh          #   Bilakit demoan indexazioan lematizatzeko pluginaren kodea (eustagger, ixa-pipes) 
 + SpanishLemmatizer         #   Bilakit demorako freeling pluginaren kodea - Solr 4.10.3
 + TermLemmatizer            #   Itzulpen hiztegiak lematizatzeko exekutagarriaren kodea (eustagger, freeling, ixa-pipes)
-
++ dicts                     #   Hiztegi elebidunak hizkuntza arteko bilaketak burutu ahal izateko
 
 INSTALLATION
 ============
