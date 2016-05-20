@@ -1,7 +1,7 @@
 Bilakit
 =======
 
-Bilakit is an open-source package for implementing multilingual (Basque, Spanish , English, French as of today) information retrieval functions on Solr. It is developed and maintained by Gotzon Santander and Xabier Saralegi (main contact) from Elhuyar Foundation. The main features Bilakit provides are:
+Bilakit is an open-source package for implementing multilingual (Basque, Spanish, English, French as of today) information retrieval functions on Solr. It is developed and maintained by Gotzon Santander and Xabier Saralegi (main contact) from Elhuyar Foundation. The main features Bilakit provides are:
 + Multilingual and cross-lingual information retrieval.
 + Multilingual lemmatization.
 + Multilingual entity recognition and classification.
@@ -136,4 +136,26 @@ To install the module in the local maven repository, usually located in ~/.m2/, 
 ````shell
 sh install.sh install
 ````
+
+INSTALLATION ON SOLR
+====================
+
+1. Copy Bilakit files to ../collection1/conf
+-------------------------------------------
++ Plugin:
+./bilakit/plugin/BilakitSolrPlugin0.9.jar
++ Language resources required by each L language:
+++ Stopwords list: bilakit/stopwords/stopwords_$L.txt
+++ Hunspell dictionary. bilakit/Hunspelldics/elhuyar/hunspell/$L.txt
+++ POS and NERC tagger (optional):
++++ IXA pipes: for es, en and fr languages (installation guide here).
++++ Eustagger: for eu (installation guide here).
+
++ Language resources required by each L1->L2 language pair:
+++ Multiword units list (optional): elhuyar/MWU_$L1.txt (format here).
+++ Bilingual L1->L2 dictionary: elhuyar/dic_$L1L2.txt (format here).
+++ Stopwords list: elhuyar/stopwords_$L2.txt.
+
+
+
 
