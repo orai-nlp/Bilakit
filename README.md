@@ -140,6 +140,9 @@ sh install.sh install
 INSTALLATION ON SOLR
 ====================
 
+WARNING: Only tested on solr-4.10.4
+
+
 1. Copy Bilakit files to ../collection1/conf
 -------------------------------------------
 Plugin:
@@ -166,9 +169,83 @@ Enable *ElhuyarTextProcessorFactory*  plugin (for NERC and lemmatization tagging
 <lib path="./plugin/BilakitSolrPlugin0.9.jar" />
 <processor class="elhuyar.bilakit.ElhuyarTextProcessorFactory">
            <str name="languages">eu,es,en,fr</str>
-    <str name="language_pairs”>eu-es,eu-en,eu-fr</str>
+    <str name="language_pairs">eu-es,eu-en,eu-fr</str>
            <str name="lemmatizer">ixapipes</str>
       </processor>
 ````
 
+Required parameters:
++ languages: document languages. Currently supported: eu, es, en, and fr.
++ languages_pairs: Pairs for cross-lingual retrieval. Currently supported: eu<->es, eu<->en, eu<->fr.
++ lemmatizer: IXA-pipes or Hunspell. NERC only with IXA-pipes.
 
+Required fields for collection documents:
++ *title_st*
++ *_st* (fields which will be lemmatized)
++ *language* =(eu|es|en|fr)
++ *title_$lang* which includes lemmatized title_st and translation in case of a different source language.
++ *source_title* which includes lemmatized title_st of source language. Needed for CLIR similarity computation. Set up automatically at index time.
++ *text_l$lang* which includes all of lemmatized *_st and translation in case of a different source language.
++ *source_text* which includes all of lemmatized *_st of source language. Needed for CLIR similarity computation.
++ *person*, *organization* and *location* which include entities identified when NERC is enabled.
+
+Enable *elhuyar.solr.PayloadSimilarityFactory* similarity plugin (for building cross-lingual rankings) in solrconfig.xml:
+
+````shell
+<queryParser name="myparser" class="elhuyar.bilakit.PayloadQParserPlugin" />
+````
+
+3. Edit Solr’s schema.xml
+---------------------------
+
+Defining the following fields is mandatory:
+
++ *title_l$lang* and *text_l$lang* fields must be defined as *text_l$lang_payloads*. 
++ *text_l$lang_payloads* type. 
+
+Enable the lemmatizer (IXA-pipes *elhuyar.solr.ElhuyarLemmatizerTokenizerFactory* or Hunspell *solr.HunspellStemFilterFactory*).
+
+Select *elhuyar.solr.PayloadSimilarityFactory* similarity class for generating proper cross-lingual rankings.
+
+
+````shell
+<fieldType name="text_l$lang_payloads" class="solr.TextField" positionIncrementGap="100">
+     <analyzer type="index">
+   <tokenizer class="solr.WhitespaceTokenizerFactory"/>    
+ <filter class="solr.DelimitedPayloadTokenFilterFactory" encoder="float"/>
+<filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords/$lang_stopwords.txt"/>
+       <filter class="solr.ASCIIFoldingFilterFactory"/>
+     </analyzer>
+     <analyzer type="query">
+       <tokenizer class="elhuyar.bilakit.ElhuyarLemmatizerTokenizerFactory" lang="$lang"/>
+       <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords/$lang_stopwords.txt"/>
+       <filter class="solr.LowerCaseFilterFactory"/>
+       <filter class="solr.ASCIIFoldingFilterFactory"/>
+     </analyzer>
+     <similarity class="elhuyar.bilakit.PayloadSimilarityFactory" />
+</fieldType>
+````
+
+Define title_$lang and text_$lang fields as text_$lang in schema.xml. These fields are just used for showing snippets.
+
+````shell
+<fieldType name="text_es" class="solr.TextField" positionIncrementGap="100">
+     <analyzer>
+       <charFilter class="solr.HTMLStripCharFilterFactory"/>
+       <tokenizer class="solr.StandardTokenizerFactory"/>
+       <filter class="solr.HunspellStemFilterFactory" dictionary="Hunspelldics/$lang_solr.dic" affix="Hunspelldics/$lang_solr.aff" ignoreCase="true" />
+       <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords/$lang_stopwords.txt" format="snowball"/>
+       <filter class="solr.LowerCaseFilterFactory"/>
+       <filter class="solr.ASCIIFoldingFilterFactory"/>
+     </analyzer>
+    </fieldType>
+````
+
+[If IXA-pipes used]
+Define person, location and organization fields:
+
+````shell
+field name="person" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="location" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="organization" type="string" indexed="true" stored="true" multiValued="true"/>
+````
