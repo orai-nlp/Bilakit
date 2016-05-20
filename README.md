@@ -1,18 +1,47 @@
 Bilakit
 =======
 
-Bilakit Hizkuntza arteko bilaketa eleaniztunak egitea ahal bidetzen duen softwarea da. Apache Solr 4.10.3ren gainean lan egiten du, euskara, gaztelania eta ingelesaren arteko bilaketa ahalbidetuz.
+Bilakit is an open-source package for implementing multilingual (Basque, Spanish , English, French as of today) information retrieval functions on Solr. It is developed and maintained by Gotzon Santander and Xabier Saralegi (main contact) from Elhuyar Foundation. The main features Bilakit provides are:
++ Multilingual and cross-lingual information retrieval.
++ Multilingual lemmatization.
++ Multilingual entity recognition and classification.
++ Easily extensible to other languages by providing corresponding lexical data.
+
 
 Contents
 ========
 
-Garatutako Solr-erako plugin-en zerrenda:
+Solr plugins:
++ ElhuyarSolrPlugin/
++ ClassicTokenizerImpl.java         #Classic lucene StandardTokenizer up until 3.0
++ Dicfile.java                      #Methods related to bilingual and MWU dictionaries
++ Dictionary.java                   #Manipulation of Hunspell dictionaries
++ ElhuyarLemmatizerTokenizer.java   #Tokenizer based on Ixapipes and Eustagger
++ ElhuyarLemmatizerTokenizerFactory.java #Tokenizer based on Ixapipes and Eustagger
++ ElhuyarTextProcessorFactory.java       #Extension of the UpdateRequestProcessorFactory for including lemmatization, NERC and translation at index time
++ EustaggerLemmatizer.java               #Socket based client for using Eustagger, Basque POS lemmatizer
++ IxaPipesLemmatizer.java                #Socket based client for using IXA pipes linguistic processor (lemmatization and NERC)
++ IPText.java
++ ISO8859_14Decoder.java                 #Encoding for Hunspell dictionaries
++ LanguageDefiner.java                   #Language detector
++ PayloadQParserPlugin.java              #Query parser for CLIR
++ SimilarityCLIRFactory.java             #Extension of similarity for performing CLIR
++ Stemmer.java                           #Stemmer based on hunspell
 
-+ BasqueLemmatizer          #   Bilakit eta Tokikom zerbitzarian eustagger pluginaren kodea - Solr 4.10.3
-+ TextProcessorElh          #   Bilakit demoan indexazioan lematizatzeko pluginaren kodea (eustagger, ixa-pipes) 
-+ SpanishLemmatizer         #   Bilakit demorako freeling pluginaren kodea - Solr 4.10.3
-+ TermLemmatizer            #   Itzulpen hiztegiak lematizatzeko exekutagarriaren kodea (eustagger, freeling, ixa-pipes)
-+ dicts                     #   Hiztegi elebidunak hizkuntza arteko bilaketak burutu ahal izateko
+Taggers' launchers:
++ ElhuyarSolrPlugin/
++ IPLemmatizerServer.java 
++ IPText.java
++ TextProcess.java
+
+Language resources:
++ dicts/
++ MWUs/*             #MWU dictionaries (eu, es, fr, en)
++ bilingualdics/*    #Bilingual dictionaries (eu-es, eu-fr, eu-en)
++ stopwords/*        #Stopword lists (eu, es, fr, en)
++ Hunspelldics/*     #Hunspell dictionaries (eu, es, fr, en)
++ examplefiles/*     #Configuration files and example collection
+
 
 INSTALLATION
 ============
@@ -107,3 +136,4 @@ To install the module in the local maven repository, usually located in ~/.m2/, 
 ````shell
 sh install.sh install
 ````
+
