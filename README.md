@@ -13,20 +13,20 @@ Contents
 
 Solr plugins:
 + ElhuyarSolrPlugin/
-+ ClassicTokenizerImpl.java         #Classic lucene StandardTokenizer up until 3.0
-+ Dicfile.java                      #Methods related to bilingual and MWU dictionaries
-+ Dictionary.java                   #Manipulation of Hunspell dictionaries
-+ ElhuyarLemmatizerTokenizer.java   #Tokenizer based on Ixapipes and Eustagger
-+ ElhuyarLemmatizerTokenizerFactory.java #Tokenizer based on Ixapipes and Eustagger
-+ ElhuyarTextProcessorFactory.java       #Extension of the UpdateRequestProcessorFactory for including lemmatization, NERC and translation at index time
-+ EustaggerLemmatizer.java               #Socket based client for using Eustagger, Basque POS lemmatizer
-+ IxaPipesLemmatizer.java                #Socket based client for using IXA pipes linguistic processor (lemmatization and NERC)
++ ClassicTokenizerImpl.java         # Classic lucene StandardTokenizer up until 3.0
++ Dicfile.java                      # Methods related to bilingual and MWU dictionaries
++ Dictionary.java                   # Manipulation of Hunspell dictionaries
++ ElhuyarLemmatizerTokenizer.java   # Tokenizer based on Ixapipes and Eustagger
++ ElhuyarLemmatizerTokenizerFactory.java # Tokenizer based on Ixapipes and Eustagger
++ ElhuyarTextProcessorFactory.java       # Extension of the UpdateRequestProcessorFactory for including lemmatization, NERC and translation at index time
++ EustaggerLemmatizer.java               # Socket based client for using Eustagger, Basque POS lemmatizer
++ IxaPipesLemmatizer.java                # Socket based client for using IXA pipes linguistic processor (lemmatization and NERC)
 + IPText.java
-+ ISO8859_14Decoder.java                 #Encoding for Hunspell dictionaries
-+ LanguageDefiner.java                   #Language detector
-+ PayloadQParserPlugin.java              #Query parser for CLIR
-+ SimilarityCLIRFactory.java             #Extension of similarity for performing CLIR
-+ Stemmer.java                           #Stemmer based on hunspell
++ ISO8859_14Decoder.java                 # Encoding for Hunspell dictionaries
++ LanguageDefiner.java                   # Language detector
++ PayloadQParserPlugin.java              # Query parser for CLIR
++ SimilarityCLIRFactory.java             # Extension of similarity for performing CLIR
++ Stemmer.java                           # Stemmer based on hunspell
 
 Taggers' launchers:
 + ElhuyarSolrPlugin/
@@ -36,11 +36,11 @@ Taggers' launchers:
 
 Language resources:
 + dicts/
-+ MWUs/*             #MWU dictionaries (eu, es, fr, en)
-+ bilingualdics/*    #Bilingual dictionaries (eu-es, eu-fr, eu-en)
-+ stopwords/*        #Stopword lists (eu, es, fr, en)
-+ Hunspelldics/*     #Hunspell dictionaries (eu, es, fr, en)
-+ examplefiles/*     #Configuration files and example collection
++ MWUs/*             # MWU dictionaries (eu, es, fr, en)
++ bilingualdics/*    # Bilingual dictionaries (eu-es, eu-fr, eu-en)
++ stopwords/*        # Stopword lists (eu, es, fr, en)
++ Hunspelldics/*     # Hunspell dictionaries (eu, es, fr, en)
++ examplefiles/*     # Configuration files and example collection
 
 
 INSTALLATION
