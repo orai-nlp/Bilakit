@@ -143,7 +143,7 @@ INSTALLATION ON SOLR
 1. Copy Bilakit files to ../collection1/conf
 -------------------------------------------
 Plugin:
-./bilakit/plugin/BilakitSolrPlugin0.9.jar
++ ./bilakit/plugin/BilakitSolrPlugin0.9.jar
 
 Language resources required by each L language:
 + Stopwords list: bilakit/stopwords/stopwords_$L.txt
@@ -157,6 +157,18 @@ Language resources required by each L1->L2 language pair:
 + Bilingual L1->L2 dictionary: elhuyar/dic_$L1L2.txt (format here).
 + Stopwords list: elhuyar/stopwords_$L2.txt.
 
+2. Edit Solr’s solrconfig.xml
+------------------------------
 
+Enable ElhuyarTextProcessorFactory  plugin (for NERC and lemmatization tagging at index time):
+
+````shell
+<lib path="./plugin/BilakitSolrPlugin0.9.jar" />
+<processor class="elhuyar.bilakit.ElhuyarTextProcessorFactory">
+           <str name="languages">eu,es,en,fr</str>
+    <str name="language_pairs”>eu-es,eu-en,eu-fr</str>
+           <str name="lemmatizer">ixapipes</str>
+      </processor>
+````
 
 
