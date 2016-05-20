@@ -160,7 +160,7 @@ Language resources required by each L1->L2 language pair:
 2. Edit Solr’s solrconfig.xml
 ------------------------------
 
-Enable ElhuyarTextProcessorFactory  plugin (for NERC and lemmatization tagging at index time):
+Enable *ElhuyarTextProcessorFactory*  plugin (for NERC and lemmatization tagging at index time):
 
 ````shell
 <lib path="./plugin/BilakitSolrPlugin0.9.jar" />
