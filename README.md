@@ -249,3 +249,83 @@ Define person, location and organization fields:
 <field name="location" type="string" indexed="true" stored="true" multiValued="true"/>
 <field name="organization" type="string" indexed="true" stored="true" multiValued="true"/>
 ````
+
+INSTALLATION EXAMPLE
+====================
+
+WARNING: Only tested on solr-4.10.4
+
+1. Download
+------------
+
+Create the bilakit directory in your collection configuration path (../collection/conf). 
+
+Download these schema.xml, solrconfig.xml and put them in ./conf
+
+Download plugin and lexical resources files and put them in ./conf/bilakit 
+
+````shell
+bilakit/
+bilakit/MWUs
+bilakit/MWUs/MWU_eu.txt
+bilakit/MWUs/MWU_en.txt
+bilakit/MWUs/MWU_es.txt
+bilakit/MWUs/MWU_fr.txt
+bilakit/bilingualdics
+bilakit/bilingualdics/DicSolrPay_en-eu.txt
+bilakit/bilingualdics/DicSolrPay_eu-fr.txt
+bilakit/bilingualdics/DicSolrPay_eu-es.txt
+bilakit/bilingualdics/DicSolrPay_eu-en.txt
+bilakit/bilingualdics/DicSolrPay_fr-eu.txt
+bilakit/bilingualdics/DicSolrPay_es-eu.txt
+bilakit/stopwords
+bilakit/stopwords/eu_stopwords.txt
+bilakit/stopwords/es_stopwords.txt
+bilakit/stopwords/en_stopwords.txt
+bilakit/stopwords/fr_stopwords.txt
+bilakit/Hunspelldics
+bilakit/Hunspelldics/en_solr.aff
+bilakit/Hunspelldics/en_solr.dic
+bilakit/Hunspelldics/fr_solr.dic
+bilakit/Hunspelldics/eu_solr.aff
+bilakit/Hunspelldics/es_solr.dic
+bilakit/Hunspelldics/fr_solr.aff
+bilakit/Hunspelldics/es_solr.aff
+bilakit/Hunspelldics/eu_solr.dic
+bilakit/plugin
+bilakit/plugin/BilakitSolrPlugin0.9.jar
+````
+
+2. Index the collection
+-------------------------
+
+Download (articles.json) example collection which contains 375 news in Basque and Spanish. Each document has three fields: -language, -body_st, -title_st.
+
+Download this script (solr_importer.py) for indexing the collection. Do not forget to configure your solr username and password.
+
+````shell
+python solr_importer.py articles.json
+````
+
+3. Search examples:
+-------------------
+
+query (*“kontsulta Katalunian”*) and results in Basque:
+
+````shell
+http://localhost:8983/solr/collection1/select?q=text_leu%3Akontsulta+text_leu%3Akatalunian&fq=language:eu&wt=json&indent=true&defType=myparser
+````
+
+query (*“consulta Cataluña”*) and results in Spanish:
+
+````shell
+http://localhost:8983/solr/collection1/select?q=text_les%3Aconsulta+text_les%3ACatalu%C3%B1a+&fq=language:es&wt=json&indent=true&defType=myparser
+````
+
+
+query (*“kontsulta Katalunian”*) in Basque and results in Spanish or Basque:
+
+````shell
+http://localhost:8983/solr/collection1/select?q=text_leu%3Akontsulta+text_leu%3Akatalunian+&wt=json&indent=true&defType=myparser
+````
+
