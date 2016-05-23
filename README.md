@@ -245,7 +245,7 @@ Define title_$lang and text_$lang fields as text_$lang in schema.xml. These fiel
 Define person, location and organization fields:
 
 ````shell
-field name="person" type="string" indexed="true" stored="true" multiValued="true"/>
+<field name="person" type="string" indexed="true" stored="true" multiValued="true"/>
 <field name="location" type="string" indexed="true" stored="true" multiValued="true"/>
 <field name="organization" type="string" indexed="true" stored="true" multiValued="true"/>
 ````
