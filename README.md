@@ -242,7 +242,7 @@ Define *text_$lang* type.
 
 
 ````shell
-<fieldType name="text_es" class="solr.TextField" positionIncrementGap="100">
+<fieldType name="text_$lang" class="solr.TextField" positionIncrementGap="100">
      <analyzer>
        <charFilter class="solr.HTMLStripCharFilterFactory"/>
        <tokenizer class="solr.StandardTokenizerFactory"/>
