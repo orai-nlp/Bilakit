@@ -198,10 +198,16 @@ Enable *elhuyar.solr.PayloadSimilarityFactory* similarity plugin (for building c
 3. Edit Solr’s schema.xml
 ---------------------------
 
-Defining the following fields is mandatory:
+Define *title_l$lang* and *text_l$lang* fields as *text_l$lang_payloads*.
 
-+ *title_l$lang* and *text_l$lang* fields must be defined as *text_l$lang_payloads*. 
-+ *text_l$lang_payloads* type. 
+````shell
+
+ <field name="title_l$lang" type="text_leu_payloads" indexed="true" stored="false" multiValued="true" termVectors="true"/>
+   <field name="text_l$lang" type="text_leu_payloads" indexed="true" stored="false" multiValued="true" termVectors="true"/>
+
+````
+
+Define  *text_l$lang_payloads* type. 
 
 Enable the lemmatizer (IXA-pipes *elhuyar.solr.ElhuyarLemmatizerTokenizerFactory* or Hunspell *solr.HunspellStemFilterFactory*).
 
@@ -226,7 +232,14 @@ Select *elhuyar.solr.PayloadSimilarityFactory* similarity class for generating p
 </fieldType>
 ````
 
-Define title_$lang and text_$lang fields as text_$lang in schema.xml. These fields are just used for showing snippets.
+Define *text_$lang* field as *text_$lang*. This field is just used for showing snippets and is built at index time by the plugin.
+
+````shell
+   <field name="text_$lang" type="text_leu_payloads" indexed="true" stored="false" multiValued="true" termVectors="true"/>
+````
+
+Define *text_$lang* type.
+
 
 ````shell
 <fieldType name="text_es" class="solr.TextField" positionIncrementGap="100">
