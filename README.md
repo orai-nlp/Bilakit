@@ -344,5 +344,7 @@ Contact information
 =========================
 
 Xabier Saralegi and Iñaki San Vicente
+
 Elhuyar Foundation
+
 {x.saralegi,i.sanvicente}@elhuyar.eus
