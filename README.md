@@ -46,12 +46,12 @@ Language resources:
 INSTALLATION
 ============
 
-Installing Bilakt requires the following steps:
+Installing Bilakit requires the following steps:
 
-If you already have installed in your machine JDK7 and MAVEN 3, please go to step 3
+If you already have installed in your machine JDK7+ and MAVEN 3, please go to step 3
 directly. Otherwise, follow these steps:
 
-1. Install JDK 1.7
+1. Install JDK 1.7+ (Tested with 1.8 1.11 is not compatible)
 -------------------
 
 If you do not install JDK 1.7 in a default location, you will probably need to configure the PATH in .bashrc or .bash_profile:
@@ -111,7 +111,7 @@ You should see reference to the MAVEN version you have just installed plus the J
 --------------------------
 
 ````shell
-git clone https://bitbucket.org/elh-eus/bilakit
+git clone https://github.com/Elhuyar/Bilakit.git
 ````
 
 3. Installing using maven
@@ -119,22 +119,19 @@ git clone https://bitbucket.org/elh-eus/bilakit
 
 ````shell
 cd bilakit
-sh install.sh package
+mvn clean package
 ````
 
-This step will create a directory called target/ which contains various directories and files. Most importantly, there you will find the plugin executables:
+This step will create a directory called target/ which contains various directories and files. Most importantly, there you will find the plugin executable:
 
-BasqueLemmatizer.jar
-SpanishLemmatizer.jar
-TextProcessor.jar
+ElhuyarSolrPlugin-0.9.jar
 
-This executable contains every dependency the module needs, so it is completely portable as long
-as you have a JVM 1.7 installed.
+This executable contains every dependency the module needs, so it is completely portable as long as you have a JVM 1.7 installed.
 
 To install the module in the local maven repository, usually located in ~/.m2/, execute:
 
 ````shell
-sh install.sh install
+mvn install
 ````
 
 INSTALLATION ON SOLR
@@ -342,3 +339,10 @@ query (*“kontsulta Katalunian”*) in Basque and results in Spanish or Basque:
 http://localhost:8983/solr/collection1/select?q=text_leu%3Akontsulta+text_leu%3Akatalunian+&wt=json&indent=true&defType=myparser
 ````
 
+
+Contact information
+=========================
+
+Xabier Saralegi and Iñaki San Vicente
+Elhuyar Foundation
+{x.saralegi,i.sanvicente}@elhuyar.eus

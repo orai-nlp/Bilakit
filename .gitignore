@@ -15,3 +15,7 @@ target/
 .classpath
 .project
 .settings/
+
+
+# maven
+dependency-reduced-pom.xml
